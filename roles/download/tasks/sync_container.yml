@@ -89,6 +89,11 @@
     - download_delegate != "localhost"
     - saved.changed
 
+# See https://github.com/ansible/ansible/issues/14104#issuecomment-174557502
+- name: Synchronize task bug workaround
+  set_fact:
+    ansible_ssh_user: "{{ansible_ssh_user}}"
+
 - name: container_download | upload container images to nodes
   synchronize:
     src: "{{ fname }}"
